@@ -1,0 +1,18 @@
+<?xml version=”1.0" encoding=”UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version=”1.0">
+  <dict>
+    <key>Label</key>
+    <string>com.homeassistant.MSTeamsStatusSender-External</string>
+    <key>StartInterval</key>
+    <integer>2</integer>
+		<key>StandardErrorPath</key>
+		<string>/tmp/ha.msteams-status.err</string>
+    <key>ProgramArguments</key>
+    <array>
+			<string>/bin/sh</string>
+			<string>-c</string>
+      <string>exec ~/Documents/Teams_Status/ms-teams-status-external.sh</string>
+    </array>
+  </dict>
+</plist>
