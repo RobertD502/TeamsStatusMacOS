@@ -57,7 +57,10 @@ Download the files from this repository. Depending on which method you are using
 ```shell
 chmod +x ~/Documents/Teams_Status/ms-teams-status-local.sh
 ```
-
+3. Remove the quarantine attribute automatically added to the downloaded script:
+```shell
+xattr -d com.apple.quarantine ~/Documents/Teams_Status/ms-teams-status-local.sh
+```
 ### Move the plist file
 1. Place the file titled `com.homeassistant.MSTeamsStatusSender-Local.plist` into `/Users/yourusername/Library/LaunchAgents`
 
@@ -97,7 +100,10 @@ That's it! Whenever you are logged in on your Mac, the script will run every 2 s
 ```shell
 chmod +x ~/Documents/Teams_Status/ms-teams-status-external.sh
 ```
-
+3. Remove the quarantine attribute automatically added to the downloaded script:
+```shell
+xattr -d com.apple.quarantine ~/Documents/Teams_Status/ms-teams-status-external.sh
+```
 ### Move the plist file
 1. Place the file titled `com.homeassistant.MSTeamsStatusSender-External.plist` into `/Users/yourusername/Library/LaunchAgents`
 
