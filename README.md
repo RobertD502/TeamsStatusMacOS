@@ -157,6 +157,10 @@ That's it! Whenever you are logged in on your Mac, the script will run every 2 s
 
 </details>
 
+## Experiencing Issues?
+Any errors that occur while running the script are logged to the error log file `ha.msteams-status.err`. This file can be located in the `tmp` folder (hidden folder nested within the hard drive directory as seen below).
+![image](https://github.com/RobertD502/TeamsStatusMacOS/assets/52541649/c50bbc33-4fc2-4b22-ae7b-ba23858e5b6a)
+
 ## Stopping the script
 
 If you no longer want the script to run on your Mac, simply open up a Terminal window and execute the following command (which one depends on your original installation method):
