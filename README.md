@@ -2,6 +2,11 @@
 <a href="https://www.buymeacoffee.com/RobertD502" target="_blank"><img src="https://cdn.buymeacoffee.com/buttons/default-orange.png" alt="Buy Me A Coffee" height="50" width="212"></a>
 <a href="https://liberapay.com/RobertD502/donate"><img alt="Donate using Liberapay" src="https://liberapay.com/assets/widgets/donate.svg" height="50" width="150"></a>
 
+> [!Caution]
+>
+> At the moment, this does not work with the new Microsoft Teams app (titled "Microsoft Teams (work and school)"). The new app is not writing to the "logs.txt" file (most likely due to a bug). This message will be removed once Microsoft fixes this bug and, if the logging differs, once changes are made to the scripts to account for the new logging behavior.
+
+
 Although the Home Assistant MacOS companion app allows you to use the state of your camera and microphone to determine if you are in a Teams meeting, this method doesn't work if you are in a meeting with both off. The aim of this project is to send your meeting status (In meeting, Not in meeting) to Home Assistant without relying on the status of your camera or microphone. This is accomplished by reading the Microsoft Teams log and forwarding the status to Home Assistant.
 The Microsoft Teams log is automatically checked every 2 seconds and the current state is sent to Home Assistant if it differs from the previous state.
 
