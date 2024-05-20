@@ -2,13 +2,11 @@
 <a href="https://www.buymeacoffee.com/RobertD502" target="_blank"><img src="https://cdn.buymeacoffee.com/buttons/default-orange.png" alt="Buy Me A Coffee" height="50" width="212"></a>
 <a href="https://liberapay.com/RobertD502/donate"><img alt="Donate using Liberapay" src="https://liberapay.com/assets/widgets/donate.svg" height="50" width="150"></a>
 
-> [!Caution]
->
-> At the moment, this does not work with the new Microsoft Teams app (titled "Microsoft Teams (work and school)"). The new app is not writing to the "logs.txt" file (most likely due to a bug). This message will be removed once Microsoft fixes this bug and, if the logging differs, once changes are made to the scripts to account for the new logging behavior.
+Although the Home Assistant MacOS companion app allows you to use the state of your camera and microphone to determine if you are in a Teams meeting, this method doesn't work if you are in a meeting with both off. The aim of this project is to send your meeting status (In meeting, Not in meeting) to Home Assistant without relying on the status of your camera or microphone.
+* If using the old Microsoft Teams application: This is accomplished by reading the Microsoft Teams log.
+* If you are using the new version of Microsoft Teams (titled `Microsoft Teams (work or school)`): Microsoft no longer writes the state to the log file. This script works around the limitation by looking at the `powerd` process' logs to determine if/if not in a meeting.
 
-
-Although the Home Assistant MacOS companion app allows you to use the state of your camera and microphone to determine if you are in a Teams meeting, this method doesn't work if you are in a meeting with both off. The aim of this project is to send your meeting status (In meeting, Not in meeting) to Home Assistant without relying on the status of your camera or microphone. This is accomplished by reading the Microsoft Teams log and forwarding the status to Home Assistant.
-The Microsoft Teams log is automatically checked every 2 seconds and the current state is sent to Home Assistant if it differs from the previous state.
+Regardless of which of the two methods mentioned above applies to you, the logs are automatically checked every 2 seconds and the current state is sent to Home Assistant if it differs from the previous state.
 
 ## Important Note
 There are two different methods titled `Local` and `External`.
@@ -80,9 +78,10 @@ Note: The `Library` folder is a hidden folder. In order to see it, while inside 
 
 ### Edit the script file
 1. Open the `ms-teams-status-local.sh` file (located in your Teams_Status folder) in an editor of your choosing.
-2. Place your token inside of the `token` variable
-3. Place your local Home Assistant URL inside the `local_url` variable, e.g., `"http://192.168.1.42:8123"`
-4. Save the changes.
+2. Change the `teams_version` variable to EITHER "Old" (including quotation marks) if you are using the old MS Teams or "New" (including quotation marks) if you are using the new version of MS Teams, also referred to as `Microsoft Teams (work or school)`
+3. Place your token inside of the `token` variable
+4. Place your local Home Assistant URL inside the `local_url` variable, e.g., `"http://192.168.1.42:8123"`
+5. Save the changes.
 
 ### Load the plist file
 On your Mac, open a terminal window and execute the following command:
@@ -90,7 +89,7 @@ On your Mac, open a terminal window and execute the following command:
 launchctl load -w ~/Library/LaunchAgents/com.homeassistant.MSTeamsStatusSender-Local.plist
 ```
 
-That's it! Whenever you are logged in on your Mac, the script will run every 2 seconds and update the input_text.microsoft_teams_status entity if the current meeting state from the Teams log differs from the previous state.
+That's it! Whenever you are logged in on your Mac, the script will run every 2 seconds and update the input_text.microsoft_teams_status entity if the current meeting state differs from the previous state.
 
 </details>
 
@@ -149,8 +148,9 @@ For those that prefer YAML, this is the full YAML for the automation above:
 
 ### Edit the script file
 1. Open the `ms-teams-status-external.sh` file (located in your Teams_Status folder) in an editor of your choosing.
-2. Place your webhook url inside the `webhook_url` variable
-3. Save the changes.
+2. Change the `teams_version` variable to EITHER "Old" (including quotation marks) if you are using the old MS Teams or "New" (including quotation marks) if you are using the new version of MS Teams, also referred to as `Microsoft Teams (work or school)`
+3. Place your webhook url inside the `webhook_url` variable
+4. Save the changes.
 
 ### Load the plist file
 On your Mac, open a terminal window and execute the following command:
@@ -158,7 +158,7 @@ On your Mac, open a terminal window and execute the following command:
 launchctl load -w ~/Library/LaunchAgents/com.homeassistant.MSTeamsStatusSender-External.plist
 ```
 
-That's it! Whenever you are logged in on your Mac, the script will run every 2 seconds and update the input_text.microsoft_teams_status entity if the current meeting state from the Teams log differs from the previous state.
+That's it! Whenever you are logged in on your Mac, the script will run every 2 seconds and update the input_text.microsoft_teams_status entity if the current meeting state differs from the previous state.
 
 </details>
 
